@@ -25,19 +25,15 @@ function App() {
   };
 
   useEffect(() => {
+    setLoading(true)
     fetchProducts();
-    return ()=>setLoading(true)
-  }, [page]); //empty dependency array because the products are fetch on every render only
-
-  useEffect(() => {
     window.scrollTo({ top: 0 });
-  }, [page]); //whenever the page changes scroll to top of the window
+  }, [page]); //empty dependency array because the products are fetch on every render only
 
   if(loading) return <Shimmer/>
   return (
     <div className="container">
       <h1 className="heading">🛍️ Product Gallery</h1>
-      {loading && <p className="status">Loading...</p>}
       {error && <p className="status error">{error}</p>}
 
       <div className="products">
